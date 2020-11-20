@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="/assets/style-1.css">
+    <link href="/assets/datatables.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="kcp-wrapper">
+        <header class="jumbotron vertical-center" style="">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+
+                        <nav class="navbar navbar-expand-sm">
+                            <!-- Brand/logo -->
+                            <a class="navbar-brand" href="#"><img src="/assets/logo-kcp-advantage.jpg" alt="logo" class="my-auto" /></a>
+
+                            <!-- Links -->
+                            <ul class="navbar-nav ml-auto right-side-header-menu">
+                                <li><img class="distributor-icon" src="/assets/menu-icon-distributor.png"> Show distributor SKU code</li>
+                                <li id="myProductListItem"><a href="/my-manage-list"><span>My Lists</span><div class="product-list-number">  49</div></a></li>
+                                <li><a href="/findmyrep" class="newOption"><strong>Find My Rep</strong></a></li>
+                                <li class="desktopOnly show-for-large-only"><a href="/profile">Account</a></li>
+                                <li><a href="/contact-us">Contact Us</a></li>
+                                <li class="desktop-avatar" style="text-align: center;">
+                                    <span class="separator">|  &nbsp;</span><a href="/profile"><span>Hello, <span class="name"> Guest</span>.</span></a><br class="show-for-medium-only">
+
+                                </li>
+                                <li><a href="#" class="logout" onclick="logoutGigyaSession();">Log out</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <nav class="second-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div style="display:inline-block">
+                            <img src="/assets/search.jpg" alt="" />
+                        </div>
+                        <div style="display:inline-block">
+
+                            <ul class="navbar-nav" style="margin-left: 79px;">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><img src="/assets/existing-business-tracker-icon.png" alt="" /></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><img src="/assets/menu-icon-cross-reference.png" alt="" /></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><img src="/assets/menu-icon-calculator.png" alt="" /></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><img src="/assets/menu-icon-kcpzone.png" alt="" /></a>
+                                </li>
+                                <li class="nav-item my-cart dropdown">
+                                    <a class="nav-link dropbtn" href="#"><img src="/assets/Sample-Request.png" alt="" /></a>
+                                    <div class="dropdown-content" onClick="event.stopPropagation();">
+                                        <div class="load-runner">
+                                            <div class="loader"></div>
+                                        </div>
+                                        <div class="cart-container">
+                                            <div class="tab-content sub-content">
+                                                <div class="modal-es-header container">
+                                                    <div class="row">
+                                                        <div class="col text-left subtotal" style="position:relative;bottom:-10px;">
+                                                            <span class="eq-width"><b>Price:</b> </span><span id="lblMsrpTotal" class="subtotal money">$0.00</span>
+                                                        </div>
+                                                        <div class="col text-right">
+                                                            <div class="close-wrap">
+                                                                <a href="javascript:void(0)" class="hoverModalclose"><span>×</span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2">
+                                                        <div class="col discount">
+                                                            <span class="eq-width"><b>Discount:</b> </span><span id="totalDis" class="totalDis money">$0.00</span>
+                                                        </div>
+
+                                                        <div class="col text-right totaliteam">
+                                                            Total Items : <span class="itemcount">0</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col text-left subtotal" style="position:relative;top:-12px;">
+                                                            <span class="eq-width"><b>Subtotal:</b> </span><span id="lblSubtotal" class="subtotal money">$0.00</span>
+                                                        </div>
+                                                        <div class="col text-right">
+
+                                                            <div class="button_cont" align="center">
+                                                                <a class="example_b button cart-btn" href="javascript:return void(0);" data-toggle="modal" data-target="#clearCartModal" onclick="openClearCartModal();">
+                                                                    Clear Cart
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="scrollbar modal-es-body" id="style-2">
+                                                    <div class="container" id="tblCartItemContainer">
+
+                                                    </div>
+                                                    <div class="force-overflow"></div>
+                                                </div>
+
+                                                <div class="modal-es-footer">
+                                                    <div class="input-group mb-2">
+
+
+                                                        <div class="button_cont" align="center"><a class="example_f btn btn-primary btn-cart-chkout" href="add-website-here" target="_blank" rel="nofollow"><span>Checkout</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><img src="/assets/menu-icon-back.png" alt="" /></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+
+        </div>
+        <footer class="jumbotron text-center" style="margin-bottom:0">
+            <p>Footer</p>
+        </footer>
+    </div>
+    <!-- The Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Remove Product</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Are you sure, you want delete this product from cart!
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnDelYes" onclick="removeFromCart();">Yes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="clearCartModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Clear Cart</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Are you sure, you want to clear cart!
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnClearCartYes" onclick="clearCart();">Yes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="/assets/datatables.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <script>
+        var _cartId = '';
+        $(document).ready(function () {
+            $('.dropdown-content').hide();
+            $(".dropbtn").hover(function () {
+                $('.dropdown-content').fadeIn();
+                $('.load-runner').show();
+                getCartDetails('1');
+            }, function () {
+                setTimeout(function () {
+                    if (!($('.dropdown-content:hover').length > 0))
+                        $('.dropdown-content').fadeOut();
+                }, 300);
+            });
+
+            $(".hoverModalclose").on('click', function () {
+                $('.dropdown-content').fadeOut();
+            })
+
+            $(".nav-tabs a").click(function () {
+                event.preventDefault();
+                $(this).tab('show');
+            });
+
+            
+        });
+        function getCartDetails(id) {
+            $('.load-runner').show();
+            debugger;
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/home/GetCartDetails",
+            data: { 'id': id },
+            //dataType: "json",
+            async: false,
+            success: function (data) {
+                $('#tblCartItemContainer').empty();
+                $('#tblCartItemContainer').html(data);
+                var _rowCount = parseInt($('#hdnRowCount').val());
+                if (_rowCount === 0) {
+                    $('.button_cont').hide();
+                }
+                else {
+                    $('.button_cont').show();
+                }
+                $('.load-runner').hide();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+        });
+    }
+        function removeFromCart() {
+        $.ajax({
+            url: '@Url.Action("RemoveFromCart", "Home")',
+            type:"GET",
+            //dataType: "JSON",
+            data: { cartId: _cartId },
+            //processData: false,
+            contentType: false,
+            success: function (response) {
+                getCartDetails('1');
+                _cartId = '';
+            },
+            error: function (req, status, error) {
+                console.log(error);
+            }
+        });
+        }
+        function showDeleteConfirm(id) {
+            //Call your Function here
+            $('#deleteModal').modal('show');
+            _cartId = id;
+        }
+        function openClearCartModal() {
+            //Call your Function here
+            $('#clearCartModal').modal('show');
+            _cartId = '';
+        }
+        function updateQuantity(type, id, quant) {
+            //type=inc/des
+            debugger;
+            if (quant === 1 && type == 'des') {
+                _cartId = id;
+                removeFromCart();
+            }
+            else {
+                $.ajax({
+                    url: '@Url.Action("UpdateItemQuantity", "Home")',
+                    type: "GET",
+                    //dataType: "JSON",
+                    data: { CartId: id, Type: type },
+                    //processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        getCartDetails('1');
+                        _cartId = '';
+                    },
+                    error: function (req, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+        }
+        function clearCart() {
+        $.ajax({
+            url: '@Url.Action("ClearCart", "Home")',
+            type:"GET",
+            //dataType: "JSON",
+            data: { id: 'chandan.kumar@kcc.com' },
+            //processData: false,
+            contentType: false,
+            success: function (response) {
+                getCartDetails('1');
+                _cartId = '';
+            },
+            error: function (req, status, error) {
+                console.log(error);
+            }
+            });
+        }
+    </script>
+</body>
+</html>
